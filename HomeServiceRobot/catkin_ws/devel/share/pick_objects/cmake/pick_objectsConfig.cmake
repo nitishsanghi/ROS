@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/workspace/catkin_ws/devel/lib;/opt/ros/kinetic/lib)
+    foreach(path /home/workspace/catkin_ws/devel/lib;/home/workspace/catkin_ws/devel/lib;/opt/ros/kinetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)
@@ -177,7 +177,7 @@ foreach(library ${libraries})
   endif()
 endforeach()
 
-set(pick_objects_EXPORTED_TARGETS "pick_objects_generate_messages_cpp;pick_objects_generate_messages_eus;pick_objects_generate_messages_lisp;pick_objects_generate_messages_nodejs;pick_objects_generate_messages_py")
+set(pick_objects_EXPORTED_TARGETS "")
 # create dummy targets for exported code generation targets to make life of users easier
 foreach(t ${pick_objects_EXPORTED_TARGETS})
   if(NOT TARGET ${t})
@@ -214,7 +214,7 @@ foreach(depend ${depends})
   list(APPEND pick_objects_EXPORTED_TARGETS ${${pick_objects_dep}_EXPORTED_TARGETS})
 endforeach()
 
-set(pkg_cfg_extras "pick_objects-msg-extras.cmake")
+set(pkg_cfg_extras "")
 foreach(extra ${pkg_cfg_extras})
   if(NOT IS_ABSOLUTE ${extra})
     set(extra ${pick_objects_DIR}/${extra})
