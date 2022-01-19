@@ -77,18 +77,18 @@ marker.pose.orientation.w = 1.0;
 ros::Rate loop_rate(100); 
 float px = 1;
 float py = 1;
-float dx = 3;
-float dy = 3;
+float dx = -3;
+float dy = -3;
 
 while(ros::ok()){
 
-if((sqrt((x_estimate - px)*(x_estimate - px) + (y_estimate - py)*(y_estimate - py)) > .1) & !pickup_point){
+if((sqrt((x_estimate - px)*(x_estimate - px) + (y_estimate - py)*(y_estimate - py)) > .2) & !pickup_point){
 marker.pose.position.x = px;
 marker.pose.position.y = py;
 marker.pose.position.z = 0.0;
 }
 
-else if((sqrt((x_estimate - px)*(x_estimate - px) + (y_estimate - py)*(y_estimate - py)) <= .1) &!pickup_point){
+else if((sqrt((x_estimate - px)*(x_estimate - px) + (y_estimate - py)*(y_estimate - py)) <= .2) &!pickup_point){
 	pickup_point = true;
 	in_transit = true;
 	marker.scale.x = 0.0;
@@ -96,12 +96,12 @@ else if((sqrt((x_estimate - px)*(x_estimate - px) + (y_estimate - py)*(y_estimat
 	marker.scale.z = 0.0;
 }
 
-else if ((sqrt((x_estimate - dx)*(x_estimate - dx) + (y_estimate - dy)*(y_estimate - dy)) > .1) & !dropoff_point){
+else if ((sqrt((x_estimate - dx)*(x_estimate - dx) + (y_estimate - dy)*(y_estimate - dy)) > .2) & !dropoff_point){
 	marker.scale.x = 0.0;
 	marker.scale.y = 0.0;
 	marker.scale.z = 0.0;
 }
-else if((sqrt((x_estimate - dx)*(x_estimate - dx) + (y_estimate - dy)*(y_estimate - dy)) <= .1) & !dropoff_point){
+else if((sqrt((x_estimate - dx)*(x_estimate - dx) + (y_estimate - dy)*(y_estimate - dy)) <= .2) & !dropoff_point){
 	dropoff_point = true;
 	marker.pose.position.x = dx;
 	marker.pose.position.y = dy;
