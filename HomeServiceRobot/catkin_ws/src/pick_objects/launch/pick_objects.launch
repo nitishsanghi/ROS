@@ -1,5 +1,0 @@
-<launch>
-
-<node name="pick_objects" pkg="pick_objects" type="pick_objects"/>
-
-</launch>
